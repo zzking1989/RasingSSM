@@ -1,0 +1,40 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+       <!--xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">-->
+    <!--&lt;!&ndash;开启shiro的注解&ndash;&gt;-->
+    <!--<bean id="advisorAutoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">-->
+        <!--<property name="proxyTargetClass" value="true"></property>-->
+    <!--</bean>-->
+    <!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"/>-->
+    <!--&lt;!&ndash;注入自定义的Realm&ndash;&gt;-->
+    <!--<bean id="RasingRealm" class="com.shiro.RasingRealm"></bean>-->
+    <!--<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">-->
+        <!--<property name="realm" ref="RasingRealm"></property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;配置ShiroFilter&ndash;&gt;-->
+    <!--<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">-->
+        <!--<property name="securityManager" ref="securityManager"></property>-->
+        <!--&lt;!&ndash;登入页面&ndash;&gt;-->
+        <!--<property name="loginUrl" value="/WEB-INF/login.jsp"></property>-->
+        <!--&lt;!&ndash;登入成功页面&ndash;&gt;-->
+        <!--<property name="successUrl" value="/WEB-INF/main.jsp"/>-->
+        <!--<property name="filters">-->
+            <!--<map>-->
+                <!--&lt;!&ndash;退出过滤器&ndash;&gt;-->
+                <!--<entry key="logout" value-ref="logoutFilter" />-->
+            <!--</map>-->
+        <!--</property>-->
+        <!--&lt;!&ndash;URL的拦截&ndash;&gt;-->
+        <!--<property name="filterChainDefinitions" >-->
+            <!--<value>-->
+                <!--/WEB-INF/main.jsp = anon-->
+            <!--</value>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--&lt;!&ndash;自定义退出LogoutFilter&ndash;&gt;-->
+    <!--&lt;!&ndash;bean id="logoutFilter" class="com.test.filter.SystemLogoutFilter">-->
+        <!--<property name="redirectUrl" value="/login"/>-->
+    <!--</bean&ndash;&gt;-->
+<!--</beans>-->

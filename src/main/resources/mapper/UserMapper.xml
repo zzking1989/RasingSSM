@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rasing.dao.UserDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.rasing.model.Users">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="age" property="age"/>
+        <result column="email" property="email"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_name AS userName, password, age, email
+    </sql>
+
+    <!--查询所有用户-->
+    <select id="selectUsersAll" resultMap="BaseResultMap">
+        SELECT * from users
+    </select>
+
+    <!--根据条件筛选-->
+    <insert id="addUser" parameterType="com.rasing.model.Users">
+        INSERT INTO users(
+        <if test="id != null and id != ''">id,</if>
+        <if test="userName != null and userName != ''">user_name,</if>
+        <if test="password != null and password != ''">password,</if>
+        <if test="age != null and age != 0">age,</if>
+        <if test="email != null and email != ''">email</if>
+        )
+        VALUES (
+        <if test="id != null and id != ''">#{id},</if>
+        <if test="userName != null and userName != ''">#{userName},</if>
+        <if test="password != null and password != ''">#{password},</if>
+        <if test="age != null and age != 0">#{age},</if>
+        <if test="email != null and email != ''">#{email}</if>
+        )
+    </insert>
+
+    <select id="getUserByUserName" parameterType="String" resultMap="BaseResultMap">
+        SELECT * from users where user_name = #{userName}
+    </select>
+
+    <select id="getUserByUserID" parameterType="String" resultMap="BaseResultMap">
+        SELECT * from users where id = #{id}
+    </select>
+
+    <delete id="deleteUser" parameterType="String">
+        DELETE FROM users
+        WHERE id=#{id}
+    </delete>
+    <update id="updateUser" parameterType="com.rasing.model.Users">
+        UPDATE users
+        SET password=#{password}, age=#{age}, email=#{email}
+        WHERE user_name = #{userName};
+    </update>
+
+
+</mapper>
